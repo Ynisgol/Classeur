@@ -1,4 +1,16 @@
-<h1 id="fenwick-tree-binary-indexed-tree">Fenwick Tree (Binary Indexed Tree)</h1>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fenwick Tree</title>
+  <link rel="stylesheet" href="http://app.classeur.io/base-min.css" />
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+
+<body>
+  <div class="export-container"><h1 id="fenwick-tree-binary-indexed-tree">Fenwick Tree (Binary Indexed Tree)</h1>
 <p>Fenwick Tree is a tree-structured array that can be used for frequency calculation. Given an array <script type="math/tex; mode=display" id="MathJax-Element-4928">a = [a_0, a_1, ..., a_{n-1}]</script>, whose element value set is <script type="math/tex; mode=display" id="MathJax-Element-4929">s = \{s_1, s_2, ..., s_m\}</script> assuming <script type="math/tex" id="MathJax-Element-4930">s_k (1\le k\le m)</script> is in sorted order. We don’t really care about the actual value of <script type="math/tex" id="MathJax-Element-4931">s_k</script>. We only want to know how many times the <script type="math/tex" id="MathJax-Element-4932">k</script>th element occurs. We call the counts array <script type="math/tex" id="MathJax-Element-4933">c</script> so that <script type="math/tex" id="MathJax-Element-4934">c[k]</script> means the count of the <script type="math/tex" id="MathJax-Element-4935">k</script>th element. So, a Fenwick Tree is defined as an array of size <script type="math/tex" id="MathJax-Element-4936">m</script> named <script type="math/tex" id="MathJax-Element-4937">f</script>. For each <script type="math/tex" id="MathJax-Element-4938">k</script>, if, in its binary representation, the least significant bit that is <script type="math/tex" id="MathJax-Element-4939">1</script> is representing <script type="math/tex" id="MathJax-Element-4940">2^p</script>, then <script type="math/tex; mode=display" id="MathJax-Element-4941">f[k] = \sum_{l = 1}^{2^p}c[k - 2^p + l]</script>. So, when <script type="math/tex" id="MathJax-Element-4942">c[k]</script> changes, <script type="math/tex" id="MathJax-Element-4943">\forall k'</script> so that <script type="math/tex" id="MathJax-Element-4944">k' - 2^{p'} + 1 \le k\le k' \le m</script>, <script type="math/tex" id="MathJax-Element-4945">f[k']</script> needs to be updated.</p>
 <p>From what is stored in the tree, basically we can do two kinds of operations - calculate <script type="math/tex" id="MathJax-Element-5981">c[k]</script> and calculate <script type="math/tex" id="MathJax-Element-5982">sum(k) = \sum_{l=1}^k c[l]</script>. To calculate <script type="math/tex" id="MathJax-Element-5983">c[k]</script> is not very easy, which is based on <script type="math/tex" id="MathJax-Element-5984">sum(k) - sum(k-1)</script>. To calculate <script type="math/tex" id="MathJax-Element-5985">sum(k)</script>, if <script type="math/tex; mode=display" id="MathJax-Element-5986">k=2^{p_t}+2^{p_{t-1}}+\dots+2^{p_0}</script>, where <script type="math/tex" id="MathJax-Element-5987">p_t</script>, <script type="math/tex" id="MathJax-Element-5988">p_{t-1}</script>, …, <script type="math/tex" id="MathJax-Element-5989">p_0</script> are in decending order, <script type="math/tex; mode=display" id="MathJax-Element-5990">sum(k)=\sum_{i=0}^t f[\sum_{j=0}^i 2^{p_{t-j}}]</script>.</p>
 <pre class=" language-python"><code class="prism  language-python"><span class="token keyword">class</span> FenwickTree<span class="token punctuation">:</span>
@@ -19,4 +31,7 @@
             result <span class="token operator">+</span><span class="token operator">=</span> self<span class="token punctuation">.</span>fArray<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
             k <span class="token operator">-</span><span class="token operator">=</span> k <span class="token operator">&amp;</span> <span class="token operator">-</span>k
         <span class="token keyword">return</span> result
-</code></pre>
+</code></pre></div>
+</body>
+
+</html>
